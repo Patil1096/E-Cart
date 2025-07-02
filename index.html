@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Cart</title>
+  <style>
+    * {
+      top: 0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding-top: 20px; /* Prevents content from being hidden under sticky nav */
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .nav-left {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: #262424;
+      font-size: 16px;
+      position: relative;   
+      font-weight: 500;
+    }
+    .nav-left a:hover {
+    color: #009DA1;            /* Optional: Change link color on hover */
+}
+
+.nav-left a::after {
+    content: "";            /* Create a pseudo-element */
+    display: block;        /* Make it a block element */
+    width: 100%;          /* Full width */
+    height: 3px;          /* Thickness of the underline */
+    background-color: #009DA1; /* Color for the underline */
+    position: absolute;    /* Position it absolutely */
+    left: 0;              /* Align to left */
+    bottom: -5px;         /* Position it below the text */
+    transform: scaleX(0); /* Start with scale 0 for animation */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.nav-left a:hover::after {
+    transform: scaleX(1); /* Scale to full width on hover */
+}
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-input {
+      padding: 6px;
+      font-size: 15px;
+      width: 180px;
+    }
+
+    .search-button {
+      padding: 6px 12px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.all-categories {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.category-section {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  width: 22%; /* 4 in a row on larger screens */
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+/* Text and image styles stay same */
+.category-section h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.item {
+  text-align: center;
+}
+
+.item img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.item p {
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.item:hover {
+    transform: scale(1.1);   /* Scale up on hover */
+}
+
+.see-more {
+ display: inline-block;    /* Make the link inline-block */
+    margin-top: 20px;        /* Space above the "See more" link */
+    padding: 10px 20px;      /* Padding for button appearance */
+    background-color: #007185; /* Background color */
+    color: white;            /* Text color */
+    text-decoration: none;    /* Remove underline */
+    border-radius: 5px;      /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+.see-more:hover {
+    background-color: #009DA1; /* Change background color on hover */
+}
+
+#Slide {
+  margin: 0 auto ;           
+  height: auto;                
+  width: 90%;                  
+  max-width: 800px;            
+  box-sizing: border-box;
+}
+
+#Slide img {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;           
+  display: block;
+}
+.foot {
+  padding-right: 20px;
+}
+/* Responsiveness For Slied's */
+
+@media (max-width: 600px) {
+  #Slide {
+    width: 95%;
+    height: 250px; /* Adjust if needed */
+    margin-bottom: -100px;
+  }
+}
+
+/* Responsiveness For Category */
+
+@media (max-width: 1024px) {
+  .category-section {
+    width: 30%; /* 3 items per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .category-section {
+    width: 45%; /* 2 items per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .category-section {
+    width: 100%; /* Full width on small screens */
+    margin-top: 10px;      /* Reduce top margin */
+    padding-top: 10px;   
+  }
+
+  .grid {
+     grid-template-columns: 1fr 1fr; /* ✅ Keep 2 per row even on mobile */
+  }
+
+  .item img {
+    height: 100px; /* Optional: adjust image height for smaller screens */
+  }
+
+  .item img {
+    height: 120px; /* Slightly taller image */
+  }
+}
+
+/* NavBar Responsiveness */
+ /* Responsive — but keeping same row layout on mobile */
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 15px;
+      }
+
+      .search-input {
+        width: 120px;
+        font-size: 14px;
+      }
+
+      .nav-left {
+        gap: 15px;
+      }
+
+      .nav-left a {
+        font-size: 14px;
+      }
+
+      .search-button {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+    }
+ .footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.foot {
+  flex: 1 1 300px;
+  padding: 10px;
+  text-align: center;
+}
+
+footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ccc;
+  border-top: 1px solid #555;
+  padding-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: row;
+    text-align: center;
+    
+  }
+  .foot{
+    height: 50%;
+  }
+}
+</style>
+</head>
+<body>
+
+
+  <nav>
+    <!-- Left nav links -->
+    <div class="nav-left">
+      <a href="#">Home</a>
+      <a href="#">Product</a>
+      <a href="#">Profile</a>
+    </div>
+
+    <!-- Right search box -->
+    <form class="search-box" action="/search" method="get">
+      <input type="text" name="query" class="search-input" placeholder="Search...">
+      <button type="submit" class="search-button">🔍</button>
+    </form>
+  </nav>
+
+  <!-- Slied's For The Page  -->
+
+  <div id="Slide">
+    <img id="slideImage" src="Slide1.jpg" alt="">
+</div>
+
+  <!-- Demo content -->
+<div class="all-categories">
+  <!-- Section 1 -->
+  <div class="category-section">
+    <h2>Appliances for your home | Up to 55% off</h2>
+    <div class="grid">
+      <div class="item"><img src="air-conditioner.jpg" alt=""><p>Air conditioners</p></div>
+      <div class="item"><img src="fridge.jpg" alt=""><p>Refrigerators</p></div>
+      <div class="item"><img src="microwave-faq" alt=""><p>Microwaves</p></div>
+      <div class="item"><img src="WashingMachine" alt=""><p>Washing machines</p></div>
+    </div>
+    <a href="#" class="see-more">See more</a>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="category-section">
+    <h2>Revamp your home in style</h2>
+    <div class="grid">
+      <div class="item"><img src="BeedShit" alt=""><p>Cushion covers, bedsheets</p></div>
+      <div class="item"><img src="Basket.jpg" alt=""><p>Figurines & vases</p></div>
+      <div class="item"><img src="HomeStroge.jpg" alt=""><p>Home storage</p></div>
+      <div class="item"><img src="led-lighting" alt=""><p>Lighting solutions</p></div>
+    </div>
+    <a href="#" class="see-more">Explore all</a>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="category-section">
+    <h2>PlayStation 5 Slim & Accessories | No Cost EMI*</h2>
+    <div class="grid">
+      <div class="item"><img src="Pss5" alt=""><p>PS5 Slim digital edition</p></div>
+      <div class="item"><img src="Game.jpg" alt=""><p>PS5 Slim disc edition</p></div>
+      <div class="item"><img src="Fort.jpg" alt=""><p>Fortnite edition</p></div>
+      <div class="item"><img src="GameRemote.jpg" alt=""><p>DualSense Controller</p></div>
+    </div>
+    <a href="#" class="see-more">See all deals</a>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="category-section">
+    <h2>Under ₹499 | Cloths Collection </h2>
+    <div class="grid">
+      <div class="item"><img src="Tshirt" alt=""><p>₹199 | T-Shirt</p></div>
+      <div class="item"><img src="casual.jpg" alt=""><p>₹399 | Causel</p></div>
+      <div class="item"><img src="Shoes" alt=""><p>₹499 | Shoes Collection</p></div>
+      <div class="item"><img src="Night.jpg" alt=""><p>₹499 | Night Wear</p></div>
+    </div>
+    <a href="#" class="see-more">Explore all</a>
+  </div>
+</div>
+
+<footer style="background-color: #333; color: #fff; padding: 20px 0 10px;">
+  <div class="footer-container">
+    
+    <div class="foot">
+      <h3 style="margin-bottom: 5px;">E-Cart</h3>
+      <p style="margin: 0;">Your Trust, Our Quality</p>
+    </div>
+
+    <div class="foot">
+      <h4 style="margin-bottom: 5px;">Contact</h4>
+      <p style="margin: 5px 0;">Email: <a href="mailto:siddheshwar@example.com" style="color: #ccc; text-decoration: none;">siddheshwar@example.com</a></p>
+      <p style="margin: 5px 0;">LinkedIn: 
+        <a id="linkedin" href="https://www.linkedin.com/in/siddheshwar-kharwade-407729288/" target="_blank" style="color: #ccc; text-decoration: none;">
+          linkedin.com/in/siddheshwar
+        </a>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Copyright line at bottom -->
+  <div class="copyright">
+    &copy; 2025 Siddheshwar Kharwade
+  </div>
+</footer>
+<Script>
+const images = [
+   "Slide1.jpg",
+   "Slied2.jpg",
+   "Slied3.jpg",
+   "Slied4.jpg",
+   "Slied5.jpg"
+];
+
+
+let currentIndex = 0;
+
+    function changeImage() {
+        currentIndex = (currentIndex + 1) % images.length; // Loop back to the first image
+        document.getElementById('slideImage').src = images[currentIndex];
+    }
+    // Change image every 3 seconds (3000 milliseconds)
+    setInterval(changeImage, 3000);
+</script>
+</body>
+</html>
